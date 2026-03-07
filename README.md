@@ -4,5 +4,5 @@
 Et system hvor brugeren kan visualisere sit elforbrug med forskellige datapunkter af smart-house teknologi. 
 
 ## Problemformulering:
-Mange husstande har i dag adgang til smart-home teknologi, men mangler et overskueligt system til at visualisere og forstå deres elforbrug. Uden et klart overblik over forbruget kan det være svært at identificere energislugere, ændre vaner og reducere unødvendige udgifter.
+Mange husstande har i dag adgang til smart-home teknologi, men mangler et overskueligt system til at visualisere og forstå deres elforbrug. Uden et klart overblik over forbruget kan det være svært at identificere energislugere samt hvordan man kan reducere unødvendige elforbrug.
 Hvordan kan der udvikles et brugervenligt system til visualisering af smart-home data, som giver brugeren et klart og letforståeligt overblik over elforbrug og andre relevante datapunkter, og som samtidig understøtter energibesparende adfærd?
