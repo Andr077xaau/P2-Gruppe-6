@@ -12,19 +12,16 @@ public class TestDB {
 
         try (
             Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement("SELECT 1");
+            ResultSet rs = stmt.executeQuery()
         ) {
 
             if (conn != null && !conn.isClosed()) {
                 System.out.println("Database connected successfully!");
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    System.out.println(rs.getString("name"));
-                }
-            }
         } catch (SQLException e) {
+            System.out.println("Database failed!");
             e.printStackTrace();
         }
     }
