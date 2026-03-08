@@ -1,1 +1,28 @@
+// Connect Eclipse to MySQL (Database)
+package database;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class TestDB {
+
+    public static void main(String[] args) {
+
+        try (
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT 1");
+            ResultSet rs = stmt.executeQuery()
+        ) {
+
+            if (conn != null && !conn.isClosed()) {
+                System.out.println("Database connected successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Database failed!");
+            e.printStackTrace();
+        }
+    }
+}
