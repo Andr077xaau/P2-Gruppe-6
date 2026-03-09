@@ -1,1 +1,20 @@
+package util;
 
+public class EnergyCalculator {
+
+    // Beregn energiforbrug i kWh
+    public static double calculateEnergy(double powerWatts, double hours) {
+        return (powerWatts * hours) / 1000.0;
+    }
+
+    // Beregn pris baseret på kWh og pris pr kWh
+    public static double calculateCost(double kWh, double pricePerkWh) {
+        return kWh * pricePerkWh;
+    }
+
+    // Beregn energiforbrug direkte fra watt, timer og pris
+    public static double calculateTotalCost(double powerWatts, double hours, double pricePerkWh) {
+        double energy = calculateEnergy(powerWatts, hours);
+        return calculateCost(energy, pricePerkWh);
+    }
+}
