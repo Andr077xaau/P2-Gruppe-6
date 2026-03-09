@@ -1,3 +1,4 @@
+// Forbindelse til MySQL
 package database;
 
 import java.sql.Connection;
