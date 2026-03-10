@@ -1,1 +1,17 @@
+CREATE DATABASE energi_forbrug;
+USE energi_forbrug;
 
+CREATE USER 'energi_app'@'localhost' IDENTIFIED BY 'stærktpassword';
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON energi_forbrug.*
+TO 'energi_app'@'localhost';
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAAMP
+);
+
+ALTER TABLE 
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
