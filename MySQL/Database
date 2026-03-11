@@ -1,17 +1,70 @@
-CREATE DATABASE energi_forbrug;
-USE energi_forbrug;
+CREATE DATABASE energi_forbrug;  // Sådan laves databasen
+USE energi_forbrug;              // Checker om MySQL godkender den
 
-CREATE USER 'energi_app'@'localhost' IDENTIFIED BY 'stærktpassword';
-GRANT SELECT, INSERT, UPDATE, DELETE
-ON energi_forbrug.*
-TO 'energi_app'@'localhost';
+
+CREATE USER 'energi_app'@'localhost' IDENTIFIED BY 'stærktpassword';    // Linje 53 og 56 = Administrator for databadeb
+GRANT SELECT, INSERT, UPDATE, DELETE                                    // Administrator
+ON energi_forbrug.*                                                     // Administrator
+TO 'energi_app'@'localhost';                                            // Administrator
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    username VARCHAR(50) UNIQUE NOT NULL,
+    user_id INT AUTO_INCREMENT PRIMARY KEY, 
+    navn VARCHAR(100) UNIQUE NOT NULL,
+    efternavn VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100),
+    INDEX(email)                                    // Sekundær email oprettes så man kan søge på email og finde det seperat.
     password_hash VARCHAR(255) NOT NULL
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAAMP
+    FOREIGN KEY (user_id) REFERENCES users(user_id);
 );
 
-ALTER TABLE users
-ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE users                                            // Denne kolonne skal indsættes manuelt da SQL ikke linje laver den på automatik
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;   // -----||------- Fungere sammen med linje 27. Tilføjer tid til user
+
+
+CREATE TABLE Kategori (
+    kategori_id INT AUTO_INCREMENT PRIMARY KEY,
+    navn VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Enhed (
+    enhed_id INT AUTO_INCREMENT PRIMARY KEY,
+    navn VAARCHAR(255) NOT NULL,
+    kategori_id INT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (kategori_id) REFERENCES Kategori(kategori_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+ALTER TABLER Enhed;
+ADD COLUMN watt INT;
+
+CREATE TABLE EnhedType (
+    type_id INT AUTO_INCREMENT PRIMARY KEY,
+    type_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE EnhedForbrug (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    enhed_type_id INT NOT NULL,
+    user_id INT NOT NULL,
+    kwh DOUBLE,
+    timer DOUBLE,
+    forbrug DOUBLE,
+    pris DOUBLE,
+    FOREIGN KEY (enhed_type_id) REFERENCES EnhedType(type_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE    //Hvis en bruger slettes, så slettes deres dataforbrug også fra databasenn
+);
+
+CREATE VIEW SamletForbrugPerRum (
+SELECT
+    k.navn AS rum,
+    SUM(f.kwh) AS samlet_kwh,
+    SUM(f.pris) AS samlet_pris
+FROM EnhedForbrug f
+JOIN Enhed e ON f.enhed_id = e.enhed_id
+JOIN Kategori k ON e.kategori_id = k.kategori_id
+GROUP BY k.navn;
+);
+
+
