@@ -2,7 +2,7 @@ CREATE DATABASE energi_forbrug;  // Sådan laves databasen
 USE energi_forbrug;              // Checker om MySQL godkender den
 
 
-CREATE USER 'energi_app'@'localhost' IDENTIFIED BY 'stærktpassword';    // Linje 53 og 56 = Administrator for databadeb
+CREATE USER 'energi_app'@'localhost' IDENTIFIED BY 'passswrd1234hej.bestemmerselvkode';    // Linje 53 og 56 = Administrator for databadeb
 GRANT SELECT, INSERT, UPDATE, DELETE                                    // Administrator
 ON energi_forbrug.*                                                     // Administrator
 TO 'energi_app'@'localhost';                                            // Administrator
