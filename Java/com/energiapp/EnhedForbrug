@@ -4,19 +4,19 @@ public class EnhedForbrug {
 
     private int enhedTypeId;
     private int userId;
-    private String vaerelse;
+    private String værelse;
     private double watt;
     private double timer;
     private double prisPerKwh;
 
     public EnhedForbrug() {}
 
-    public EnhedForbrug(int enhedTypeId, int userId, String vaerelse,
+    public EnhedForbrug(int enhedTypeId, int userId, String værelse,
                         double watt, double timer, double prisPerKwh) {
 
         this.enhedTypeId = enhedTypeId;
         this.userId = userId;
-        this.vaerelse = vaerelse;
+        this.værelse = vaerelse;
         this.watt = watt;
         this.timer = timer;
         this.prisPerKwh = prisPerKwh;
@@ -50,12 +50,12 @@ public class EnhedForbrug {
         this.userId = userId;
     }
 
-    public String getVaerelse() {
+    public String getVærelse() {
         return vaerelse;
     }
 
-    public void setVaerelse(String vaerelse) {
-        this.vaerelse = vaerelse;
+    public void setVærelse(String værelse) {
+        this.værelse = værelse;
     }
 
     public double getWatt() {
