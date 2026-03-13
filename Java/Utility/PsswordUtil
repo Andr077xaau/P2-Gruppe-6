@@ -14,6 +14,6 @@ public class PasswordUtil {
 }
 
 // Der står (import org.mindrot.jbcrypt.BCrypt). Det er en bibliotek Eclipse kender men den skal downloades manuelt, da Eclipse ikke har den liggende så den vil kompile - error.
-// Den sørger for at ens password bliver omdannet til Hash# i databasen så brugeren er "beskyttet".
+// Den sørger for at ens password bliver omdannet til Hash# i databasen så brugerens kode er "beskyttet".
 // Filen slutter med (jar) og inde i Eclipe i den oprettede Package er der en "Class" fil som krives i. 
    Højre klik på filen. Vælg ("Build Path - Configure Build Path - Tryk på "Libraries"  og i højre side står der "Add External JARS...". Den downloadede fil vælger i og tryk "Apply Close".
