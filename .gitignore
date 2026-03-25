@@ -1,0 +1,14 @@
+  # Maven build output
+  target/
+
+  # Eclipse IDE files
+  .metadata/
+  .classpath
+  .project
+  .settings/
+
+  # Vaadin generated frontend files
+  src/main/frontend/generated/
+
+  # Database credentials — never commit passwords
+  src/main/resources/application.properties
