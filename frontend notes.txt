@@ -1,0 +1,102 @@
+made pom.xml file. its used to automaticaly download dependencys and structure, pretty much everything that is not noted here is made by this file, added spring-boot and MySQL. used example from vaadin website. https://vaadin.com/docs/latest/getting-started/quick-start
+
+added these dependencies:
+  - spring-boot-starter (Spring Boot core)
+  - spring-boot-starter-security (login/auth)
+  - vaadin-spring-boot-starter (Vaadin UI framework)
+  - mysql-connector-java (database)
+  - jbcrypt (password hashing — replaces manual JAR)
+
+
+made structure for mavin it should look like that:
+
+ P2-Gruppe-6/
+  ├── pom.xml
+  └── src/
+      └── main/
+          ├── java/
+          │   └── com/
+          │       └── gruppe6p2/
+          │           └── energianalyse/
+          └── resources/
+              └── application.properties
+
+
+made application properries, and wrote this:
+
+  spring.datasource.url=jdbc:mysql://localhost:3306/energi_forbrug?serverTimezone=UTC
+  spring.datasource.username=energi_app
+  spring.datasource.password=YOUR_PASSWORD_HERE
+  spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+  spring.jpa.hibernate.ddl-auto=validate
+  spring.jpa.show-sql=true
+
+
+ Breaking it down:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/energi_forbrug?serverTimezone=UTC
+  jdbc:mysql://  localhost  :  3306  /  energi_forbrug  ?serverTimezone=UTC
+  ↑              ↑              ↑        ↑                ↑
+  protocol    your PC       MySQL     database name     fixes time-related
+                          default port                  errors in MySQL
+
+  ---
+  spring.datasource.username=energi_app
+  spring.datasource.username  =  energi_app
+  ↑                               ↑
+  tells Spring this is            the MySQL user you
+  the DB username                 created in your SQL script
+
+  ---
+  spring.datasource.password=YOUR_PASSWORD_HERE
+  spring.datasource.password  =  YOUR_PASSWORD_HERE
+  ↑                               ↑
+  tells Spring this is            replace this with the actual
+  the DB password                 password from your SQL script
+(i already wrote password here: passswrd1234hej.bestemmerselvkode)
+  ---
+  spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+  spring.datasource.driver-class-name  =  com.mysql.cj.jdbc.Driver
+  ↑                                        ↑
+  which JDBC driver to use                 the MySQL driver class
+                                           from mysql-connector-j
+
+  ---
+  spring.jpa.hibernate.ddl-auto=validate
+  spring.jpa.hibernate.ddl-auto  =  validate
+  ↑                                  ↑
+  what to do with DB tables           only CHECK that tables match
+  on app startup                      your code — don't change anything
+
+  ---
+  spring.jpa.show-sql=true
+  spring.jpa.show-sql  =  true
+  ↑                        ↑
+  print SQL queries         yes, show them
+  to console                in the terminal
+
+  ---
+  server.port=8080
+  server.port  =  8080
+  ↑                ↑
+  which port       your app runs at
+  to use           http://localhost:8080
+
+
+
+updated MySQL(used ai cause there was some cind of bug)
+
+now it can be opened with mvn spring-boot:run  at http://localhost:8080/
+
+added gitignore, it was almost entirely made with ai
+
+added mainview but it was again almost entirely made by ai, cause im tired
+
+
+it can start, but it doesn't work much for now
+----------
+
+there are 4 main files for now: application.java(starting file, holds everything together), loginviev, mainviev and securityconfig(deals with passwords and where user can go)
+
+there is also application.propperties that just explains where is database.
